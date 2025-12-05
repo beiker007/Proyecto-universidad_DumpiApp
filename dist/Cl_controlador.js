@@ -1,4 +1,4 @@
-import Cl_mRegistro from "./Cl_mRegistro";
+import Cl_mRegistro from "./Cl_mRegistro.js";
 export default class Cl_controlador {
     constructor() {
         this.arrRegistro = [];
