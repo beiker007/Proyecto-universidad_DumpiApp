@@ -40,4 +40,7 @@ export default class Cl_principal {
         });
     }
 }
+
+// Arranca la aplicación al cargar este módulo
+new Cl_principal();
  

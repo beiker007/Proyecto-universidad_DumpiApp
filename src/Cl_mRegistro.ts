@@ -64,11 +64,6 @@ export interface iRegistro {
     get fecha(): string{
         return this._fecha;
     }
-    /**
- * Valida si la referencia es un número válido.
- * Utiliza una expresión regular para verificar que la referencia solo contenga dígitos numéricos.
- * @returns {boolean} - true si la referencia es un número válido, false en caso contrario.
- */
 get validarReferencia(): boolean {
     const referenciaRegex = /^[0-9]+$/;
     return referenciaRegex.test(this._referencia);
