@@ -1,20 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const Cl_mRegistro_js_1 = __importDefault(require("./Cl_mRegistro.js"));
-const Cl_vRegistro_js_1 = __importDefault(require("./Cl_vRegistro.js"));
-class Cl_controlador {
+import Cl_mRegistro from "./Cl_mRegistro";
+export default class Cl_controlador {
     constructor() {
         this.arrRegistro = [];
-        // Inicializa la vista y le pasa referencia al controlador
-        this.vista = new Cl_vRegistro_js_1.default();
-        this.vista.controlador = this; // vínculo vista ↔ controlador
+        // `vista` se asigna externamente para evitar dependencia circular.
+        this.vista = null;
+        // constructor sencillo: la vista será asignada desde el bootstrap (p. ej. Cl_principal)
     }
     // Método para agregar un registro desde la vista
     agregarRegistro(datos, callback) {
-        const nuevo = new Cl_mRegistro_js_1.default(datos.referencia, datos.concepto, datos.categoria, datos.monto, datos.tipo, datos.fecha);
+        const nuevo = new Cl_mRegistro(datos.referencia, datos.concepto, datos.categoria, datos.monto, datos.tipo, datos.fecha);
         const error = nuevo.ValidarRegistro;
         if (error !== true) {
             callback(error);
@@ -51,10 +45,9 @@ class Cl_controlador {
         if (data) {
             const lista = JSON.parse(data);
             lista.forEach(reg => {
-                const nuevo = new Cl_mRegistro_js_1.default(reg.referencia, reg.concepto, reg.categoria, reg.monto, reg.tipo, reg.fecha);
+                const nuevo = new Cl_mRegistro(reg.referencia, reg.concepto, reg.categoria, reg.monto, reg.tipo, reg.fecha);
                 this.arrRegistro.push(nuevo);
             });
         }
     }
 }
-exports.default = Cl_controlador;

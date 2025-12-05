@@ -1,7 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.formatearFecha = formatearFecha;
-exports.ahora = ahora;
 function formatearFecha(fechaObj) {
     const anio = fechaObj.getFullYear();
     const mes = String(fechaObj.getMonth() + 1).padStart(2, "0");
@@ -13,3 +9,4 @@ function formatearFecha(fechaObj) {
 function ahora() {
     return new Date();
 }
+export { formatearFecha, ahora };

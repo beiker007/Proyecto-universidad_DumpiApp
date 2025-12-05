@@ -1,6 +1,5 @@
 import { iRegistro } from "./Cl_mRegistro";
-import Cl_vGeneral from "./Cl_vGeneral";
-
+import Cl_vGeneral from "./tools/Cl_vGeneral";
 export default class Cl_vRegistro extends Cl_vGeneral {
   private inReferencia: HTMLInputElement;
   private inConcepto: HTMLInputElement;
@@ -13,29 +12,26 @@ export default class Cl_vRegistro extends Cl_vGeneral {
   // Área donde se mostrarán los datos ingresados
   private lblDatos: HTMLElement;
 
-  public _controlador: Cl_controlador | null = null;
-
   constructor() {
     super({ formName: "formRegistro" });
 
-    this.inReferencia = this.crearHTMLInputElement({ elementName: "inReferencia" });
-    this.inConcepto   = this.crearHTMLInputElement({ elementName: "inConcepto" });
-    this.inMonto      = this.crearHTMLInputElement({ elementName: "inMonto" });
-    this.inFecha      = this.crearHTMLInputElement({ elementName: "inFecha" });
+    this.inReferencia = this.crearHTMLInputElement("inReferencia");
+    this.inConcepto = this.crearHTMLInputElement("inConcepto");
+    this.inMonto = this.crearHTMLInputElement("inMonto");
+    this.inFecha = this.crearHTMLInputElement("inFecha");
 
-    this.btRegistrar = this.crearHTMLButtonElement({
-      elementName: "btRegistrar",
+    this.btRegistrar = this.crearHTMLButtonElement("btRegistrar", {
       onclick: () => {
         const datos: iRegistro = {
           referencia: this.inReferencia.value,
           concepto: this.inConcepto.value,
           categoria: "General",
-          monto: parseFloat(this.inMonto.value),
+          monto: parseFloat(this.inMonto.value) || 0,
           tipo: "Ingreso",
           fecha: this.inFecha.value,
         };
 
-        this.controlador?.agregarRegistro(datos, (error) => {
+        this.controlador?.agregarRegistro(datos, (error: string | false) => {
           if (error) {
             alert("Error: " + error);
           } else {
@@ -51,8 +47,7 @@ export default class Cl_vRegistro extends Cl_vGeneral {
       },
     });
 
-    this.btCancelar = this.crearHTMLButtonElement({
-      elementName: "btCancelar",
+    this.btCancelar = this.crearHTMLButtonElement("btCancelar", {
       onclick: () => {
         this.show({ ver: false });
         this.controlador?.vista.show();

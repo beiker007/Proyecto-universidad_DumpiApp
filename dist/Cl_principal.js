@@ -1,12 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const Cl_controlador_js_1 = __importDefault(require("./Cl_controlador.js"));
-class Cl_principal {
+import Cl_controlador from "./Cl_controlador.js";
+export default class Cl_principal {
     constructor() {
-        this.controlador = new Cl_controlador_js_1.default();
+        this.controlador = new Cl_controlador();
         if (typeof this.controlador.cargarDesdeStorage === 'function') {
             this.controlador.cargarDesdeStorage();
         }
@@ -57,4 +52,3 @@ class Cl_principal {
         });
     }
 }
-exports.default = Cl_principal;

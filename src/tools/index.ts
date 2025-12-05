@@ -1,5 +1,5 @@
 // Re-exporta todo desde tu módulo de fechas
-export * from "./date.tools.js";
+export * from "./date.tools";
 
 // Si tuvieras más utilidades, las re-exportas aquí también:
 // export * from './string.utils';

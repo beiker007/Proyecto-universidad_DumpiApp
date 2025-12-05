@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Cl_mCategoria {
+export default class Cl_mCategoria {
     constructor(nombre) {
         this._nombre = "";
         this.arrCategoria = [];
@@ -58,4 +56,3 @@ class Cl_mCategoria {
         };
     }
 }
-exports.default = Cl_mCategoria;

@@ -1,15 +1,11 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const Cl_vGeneral_1 = __importDefault(require("./Cl_vGeneral"));
-class Cl_vRegistro extends Cl_vGeneral_1.default {
+import Cl_vGeneral from "./tools/Cl_vGeneral.js";
+export default class Cl_vRegistro extends Cl_vGeneral {
     constructor() {
         var _a;
         super({ formName: "formRegistro" });
-        this._controlador = null;
-        this.inReferencia = this.crearHTMLInputElement({ elementName: "inReferencia" });
+        this.inReferencia = this.crearHTMLInputElement({
+            elementName: "inReferencia",
+        });
         this.inConcepto = this.crearHTMLInputElement({ elementName: "inConcepto" });
         this.inMonto = this.crearHTMLInputElement({ elementName: "inMonto" });
         this.inFecha = this.crearHTMLInputElement({ elementName: "inFecha" });
@@ -54,4 +50,3 @@ class Cl_vRegistro extends Cl_vGeneral_1.default {
         (_a = this.vista) === null || _a === void 0 ? void 0 : _a.appendChild(this.lblDatos);
     }
 }
-exports.default = Cl_vRegistro;

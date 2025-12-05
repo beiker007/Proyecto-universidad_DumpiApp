@@ -1,4 +1,5 @@
-import Cl_controlador from "../Cl_controlador.js";
+// No importamos el controlador aquí para evitar dependencias en tiempo de ejecución.
+// Usamos `any` para la referencia al controlador y así evitamos `import type`.
 declare global {
   interface HTMLSelectElement {
     refill: (elementsSource: any[] | undefined) => void;
@@ -18,7 +19,7 @@ Object.freeze(tHTMLElement);
 export default class Cl_vGeneral {
   private _formName: string = "";
   private _vista: HTMLElement | null = null;
-  private _controlador: Cl_controlador | null = null;
+  private _controlador: any = null;
   private objects: HTMLElement[] = [];
   constructor({ formName }: { formName: string }) {
     this.formName = formName;
@@ -36,10 +37,10 @@ export default class Cl_vGeneral {
   get vista(): HTMLElement | null {
     return this._vista;
   }
-  set controlador(controlador: Cl_controlador) {
+  set controlador(controlador: any) {
     this._controlador = controlador;
   }
-  get controlador(): Cl_controlador | null {
+  get controlador(): any {
     return this._controlador;
   }
   refresh() {

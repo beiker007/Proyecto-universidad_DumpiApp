@@ -1,14 +1,12 @@
-import Cl_mRegistro, { iRegistro } from "./Cl_mRegistro.js";
-import Cl_vRegistro from "./Cl_vRegistro.js";
+import Cl_mRegistro, { iRegistro } from "./Cl_mRegistro";
 
-export default class Cl_controlador {  
+export default class Cl_controlador {
   private arrRegistro: Cl_mRegistro[] = [];
-  public  vista: Cl_vRegistro;
+  // La vista se asigna desde el bootstrap (p. ej. Cl_principal) para evitar dependencia circular
+  public vista: any = null;
 
   constructor() {
-    // Inicializa la vista y le pasa referencia al controlador
-    this.vista = new Cl_vRegistro();
-    this.vista.controlador = this; // vínculo vista ↔ controlador
+    // constructor mínimo: la vista será asignada externamente
   }
 
   // Método para agregar un registro desde la vista
