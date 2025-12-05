@@ -1,12 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Registro de movimientos</title>
+  <!-- 👇 Aquí conectamos el CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <h1>Registro de movimientos</h1>
+
+  <!-- Formulario de registro -->
+  <form id="formRegistro">
+    <label for="inReferencia">Referencia:</label>
+    <input id="inReferencia" type="text" placeholder="Ej: 001" required />
+
+    <label for="inConcepto">Concepto:</label>
+    <input id="inConcepto" type="text" placeholder="Ej: Compras de materiales" required />
+
+    <label for="inMonto">Monto:</label>
+    <input id="inMonto" type="number" step="0.01" placeholder="Ej: 1500.00" required />
+
+    <label for="inFecha">Fecha (YYYYMMDD):</label>
+    <input id="inFecha" type="text" placeholder="Ej: 20251205" required />
+
+    <button id="btRegistrar" type="submit">Registrar</button>
+    <button id="btCancelar" type="reset">Cancelar</button>
+  </form>
+
+  <!-- Tabla de registros -->
+  <table id="tablaRegistros">
+    <thead>
+      <tr>
+        <th>Referencia</th>
+        <th>Concepto</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyRegistros">
+      <!-- Se llena dinámicamente -->
+    </tbody>
+  </table>
+
+  <!-- Script principal -->
+  <script type="module">
+    import Cl_controlador from "./dist/Cl_controlador.js";
+
+    const controlador = new Cl_controlador();
+    controlador.cargarDesdeStorage();
+
+    document.getElementById('formRegistro').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const referencia = document.getElementById('inReferencia').value;
+      const concepto   = document.getElementById('inConcepto').value;
+      const monto      = parseFloat(document.getElementById('inMonto').value);
+      const fecha      = document.getElementById('inFecha').value;
+
+      const datos = { referencia, concepto, categoria: "General", monto, tipo: "Ingreso", fecha };
+
+      controlador.agregarRegistro(datos, (error) => {
+        if (error) {
+          alert("Error: " + error);
+        } else {
+          alert("Registro agregado correctamente");
+          document.getElementById('formRegistro').reset();
+          renderTabla();
+        }
+      });
+    });
+
+    function renderTabla() {
+      const tbody = document.getElementById('tbodyRegistros');
+      tbody.innerHTML = '';
+
+      const registros = controlador.listarRegistro();
+      registros.forEach(reg => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${reg.referencia}</td>
+          <td>${reg.concepto}</td>
+          <td>${reg.monto}</td>
+          <td>${reg.fecha}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    renderTabla();
+  </script>
 </body>
 </html>
