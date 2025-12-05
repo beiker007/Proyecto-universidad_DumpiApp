@@ -1,6 +1,5 @@
 import { iRegistro } from "./Cl_mRegistro";
 import Cl_vGeneral from "./Cl_vGeneral";
-import Cl_controlador from "./Cl_controlador";
 
 export default class Cl_vRegistro extends Cl_vGeneral {
   private inReferencia: HTMLInputElement;

@@ -1,5 +1,10 @@
-import Cl_vGeneral from "./Cl_vGeneral";
-export default class Cl_vRegistro extends Cl_vGeneral {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const Cl_vGeneral_1 = __importDefault(require("./Cl_vGeneral"));
+class Cl_vRegistro extends Cl_vGeneral_1.default {
     constructor() {
         var _a;
         super({ formName: "formRegistro" });
@@ -49,3 +54,4 @@ export default class Cl_vRegistro extends Cl_vGeneral {
         (_a = this.vista) === null || _a === void 0 ? void 0 : _a.appendChild(this.lblDatos);
     }
 }
+exports.default = Cl_vRegistro;

@@ -1,4 +1,6 @@
-export default class Cl_mRegistro {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Cl_mRegistro {
     constructor(referencia, concepto, categoria, monto, tipo, fecha) {
         this.arrRegistro = [];
         this._referencia = "";
@@ -92,3 +94,4 @@ export default class Cl_mRegistro {
         };
     }
 }
+exports.default = Cl_mRegistro;

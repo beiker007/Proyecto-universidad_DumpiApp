@@ -41,53 +41,5 @@
       <!-- Se llena dinámicamente -->
     </tbody>
   </table>
-
-  <!-- Script principal -->
-  <script type="module">
-    import Cl_controlador from "./dist/Cl_controlador.js";
-
-    const controlador = new Cl_controlador();
-    controlador.cargarDesdeStorage();
-
-    document.getElementById('formRegistro').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const referencia = document.getElementById('inReferencia').value;
-      const concepto   = document.getElementById('inConcepto').value;
-      const monto      = parseFloat(document.getElementById('inMonto').value);
-      const fecha      = document.getElementById('inFecha').value;
-
-      const datos = { referencia, concepto, categoria: "General", monto, tipo: "Ingreso", fecha };
-
-      controlador.agregarRegistro(datos, (error) => {
-        if (error) {
-          alert("Error: " + error);
-        } else {
-          alert("Registro agregado correctamente");
-          document.getElementById('formRegistro').reset();
-          renderTabla();
-        }
-      });
-    });
-
-    function renderTabla() {
-      const tbody = document.getElementById('tbodyRegistros');
-      tbody.innerHTML = '';
-
-      const registros = controlador.listarRegistro();
-      registros.forEach(reg => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${reg.referencia}</td>
-          <td>${reg.concepto}</td>
-          <td>${reg.monto}</td>
-          <td>${reg.fecha}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    renderTabla();
-  </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-import Cl_mRegistro, { iRegistro } from "./Cl_mRegistro";
-import Cl_vRegistro from "./Cl_vRegistro";
+import Cl_mRegistro, { iRegistro } from "./Cl_mRegistro.js";
+import Cl_vRegistro from "./Cl_vRegistro.js";
 
 export default class Cl_controlador {  
   private arrRegistro: Cl_mRegistro[] = [];
